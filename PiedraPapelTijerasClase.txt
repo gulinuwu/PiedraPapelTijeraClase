@@ -1,0 +1,80 @@
+public void PiedraPapelTijeraClase()
+{
+    Console.WriteLine("Juego PIEDRA/PAPEL/TIJERA");
+    Console.WriteLine("El ganador es quien gana 3 duelos en total.");
+    Console.WriteLine();
+
+    Random random = new Random();
+
+    int vidasJugador, vidasMaquina = 0;
+    int entrada = 0;
+    int aleatorio = 0;
+    vidasJugador = 3;
+    vidasMaquina = 3;
+    do
+    {
+        aleatorio = random.Next(1, 4);
+        Console.Write("Introduce un valor para jugar (1 = Piedra, 2 = Papel, 3 = Tijeras): ");
+        entrada = Convert.ToInt16(Console.ReadLine());
+        if ((entrada == 1 && aleatorio == 3) ||
+            (entrada == 2 && aleatorio == 1) ||
+            (entrada == 3 && aleatorio == 2)) 
+        {
+            if (aleatorio == 1)
+            {
+                Console.WriteLine("La máquina ha elegido Piedra.");
+            }
+            if (aleatorio == 2)
+            {
+                Console.WriteLine("La máquina ha elegido Papel.");
+            }
+            if (aleatorio == 3)
+            {
+                Console.WriteLine("La máquina ha elegido Tijeras.");
+            }
+            Console.WriteLine("El jugador gana.");
+            Console.WriteLine();
+            vidasMaquina--;
+            Console.WriteLine($"Vidas: Maquina {vidasMaquina}. Jugador {vidasJugador}");
+        }
+        if (entrada == aleatorio)
+        {
+            Console.WriteLine("Empate, sigan jugando.");
+        }
+        if ((entrada == 1 && aleatorio == 2) ||
+            (entrada == 2 && aleatorio == 3) ||
+            (entrada == 3 && aleatorio == 1))
+        {
+            if (aleatorio == 1)
+            {
+                Console.WriteLine("La máquina ha elegido Piedra.");
+            }
+            if (aleatorio == 2)
+            {
+                Console.WriteLine("La máquina ha elegido Papel.");
+            }
+            if (aleatorio == 3)
+            {
+                Console.WriteLine("La máquina ha elegido Tijeras.");
+            }
+            Console.WriteLine("La máquina gana.");
+            Console.WriteLine();
+            vidasJugador--;
+            Console.WriteLine($"Vidas: Maquina {vidasMaquina}. Jugador {vidasJugador}");
+        }
+
+    } while(vidasJugador != 0 && vidasMaquina != 0);
+
+    Console.WriteLine("¿Quieres volver a jugar? (s/n)");
+    string repetir = Console.ReadLine();
+    if (repetir == "s")
+    {
+        Console.Clear();
+        PiedraPapelTijeraClase();
+    }
+    else
+    {
+        Console.WriteLine("Entonces terminamos aquí");
+        Console.ReadKey();
+    }
+}
